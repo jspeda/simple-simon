@@ -1,3 +1,91 @@
 body {
   background: #fdffea;
 }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid red;
+  height: 100vh;
+}
+
+.titlecard {
+  font-size: 2em;
+  padding: 2%;
+}
+
+.game-area {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid red;
+  height: 600px;
+  width: 1000px;
+}
+
+.count {
+  border: 1px solid red;
+  height: 20%;
+  width: 15%;
+}
+
+.start {
+  border: 1px solid red;
+  height: 20%;
+  width: 15%;
+}
+
+.play-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+  height: 550px;
+  width: 550px;
+}
+
+.r1, .r2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+  border: 1px solid black;
+}
+
+.green, .red, .yellow, .blue {
+  flex: 1;
+  height: 100%;
+  width: 25%;
+  border: 1px solid black;
+}
+
+.green {
+  border-top-left-radius: 75%;
+}
+
+.red {
+  border-top-right-radius: 75%;
+}
+
+.yellow {
+  border-bottom-left-radius: 75%;
+}
+
+.blue {
+  border-bottom-right-radius: 75%;
+}
+
+.strict {
+  height: 10%;
+  width: 10%;
+  border: 1px solid red;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+}
