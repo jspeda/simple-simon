@@ -7,7 +7,6 @@ body {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  border: 1px solid red;
   height: 100vh;
 }
 
@@ -42,7 +41,6 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid red;
   height: 550px;
   width: 550px;
 }
@@ -53,30 +51,36 @@ body {
   align-items: center;
   height: 50%;
   width: 100%;
-  border: 1px solid black;
+  border: 2px solid white;
 }
 
 .green, .red, .yellow, .blue {
   flex: 1;
   height: 100%;
   width: 25%;
-  border: 1px solid black;
+
 }
 
 .green {
   border-top-left-radius: 75%;
+  background: #16b812;
+  border-right: 4px solid white;
 }
 
 .red {
   border-top-right-radius: 75%;
+  background: #f03413;
 }
 
 .yellow {
   border-bottom-left-radius: 75%;
+  background: #e2d30f;
+  border-right: 4px solid white;
 }
 
 .blue {
   border-bottom-right-radius: 75%;
+  background: #2868f5;
 }
 
 .strict {
