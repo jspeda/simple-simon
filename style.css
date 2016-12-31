@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Jaldi');
+
 body {
   background: #fdffea;
+  font-family: 'Jaldi', sans-serif;
 }
 
 .wrapper {

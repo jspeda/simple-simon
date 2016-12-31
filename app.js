@@ -12,16 +12,20 @@ var Simon = {
 var Game = Object.create(Simon);
 
 Game.start = function() {
-  while (this.previous.length < 25) {
-    var generator = this.colors[Math.floor(Math.random() * (4 - 0) + 0)];
-    this.previous.push(generator);
+  // while (this.previous.length < 25) {
+  //   var generator = this.colors[Math.floor(Math.random() * (4 - 0) + 0)];
+  //   this.previous.push(generator);
+  //   // console.log(this.previous);
+  // };
+  for (var i = 0; i < 25; i++) {
     console.log(this.previous);
-  };
-  console.log(this.previous[1]);
-  console.log($('.' + this.previous[1]).attr('class'));
-  if ($("." + this.previous[1]).data('clicked') === true) {
-    console.log('yes');
-  }
+    
+    this.previous.push(this.colors[Math.floor(Math.random() * (4 - 0) + 0)]);
+    }
+  // console.log($('.' + this.previous[1]).attr('class'));
+  // if ($("." + this.previous[1]).data('clicked') === true) {
+  //   console.log('yes');
+  // }
   // var simonSays = setInterval(function() {
   //   $('.green, .red, .blue, .yellow').css('background', '');
   //   var selection = this.colors[Math.floor(Math.random() * (4 - 0) + 0)];
