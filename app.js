@@ -5,25 +5,36 @@ var Simon = {
     this.colors = ["green", "red", "yellow", "blue"];
     this.count = 0;
     this.previous = [];
+    this.userInput = [];
   }
 };
 
 var Game = Object.create(Simon);
 
 Game.start = function() {
-  var simonSays = setInterval(function() {
-    $('.green, .red, .blue, .yellow').css('background-color', '');
-    var selection = this.colors[Math.floor(Math.random() * (4 - 0) + 0)];
-    console.log(selection);
-    this.previous.push(selection);
-
-    $("." + this.colors[selection]).css('background-color', 'rgba(0,0,0,0)');
-    this.count++;
-    if (this.count === 25) {
-      clearInterval(simonSays);
-      console.log(this.previous);
-    }
-  }.bind(this), 1000);
+  while (this.previous.length < 25) {
+    var generator = this.colors[Math.floor(Math.random() * (4 - 0) + 0)];
+    this.previous.push(generator);
+    console.log(this.previous);
+  };
+  console.log(this.previous[1]);
+  console.log($('.' + this.previous[1]).attr('class'));
+  if ($("." + this.previous[1]).data('clicked') === true) {
+    console.log('yes');
+  }
+  // var simonSays = setInterval(function() {
+  //   $('.green, .red, .blue, .yellow').css('background', '');
+  //   var selection = this.colors[Math.floor(Math.random() * (4 - 0) + 0)];
+  //   console.log(selection);
+  //   this.previous.push(selection);
+  //   $("." + this.colors[selection]).html('boop');
+  //   $('.count').html(this.count + 1);
+  //   this.count++;
+  //   if (this.count === 1) {
+  //     clearInterval(simonSays);
+  //     console.log(this.previous);
+  //   }
+  // }.bind(this), 1000);
 };
 
 Game.strict = function() {
@@ -47,6 +58,7 @@ $('.strict').click(function() {
 
 
 $('.green, .red, .yellow, .blue').mousedown(function() {
+  $(this).data('clicked', true);
   console.log("clicked " + $(this).attr('class'));
   // $(this).css('background', 'rgba(0,0,0,0.05)');
   //background: rgba(0,0,0,0.1);

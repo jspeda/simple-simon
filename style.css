@@ -38,6 +38,10 @@ body {
   text-align: center;
 }
 
+.start:hover {
+  cursor: pointer;
+}
+
 .play-area {
   display: flex;
   flex-direction: column;
@@ -64,6 +68,10 @@ body {
 
 .green:active, .red:active, .yellow:active, .blue:active {
   background: rgba(0,0,0,0);
+}
+
+.green:hover, .red:hover, .yellow:hover, .blue:hover {
+  cursor: pointer;
 }
 
 .green {
@@ -94,6 +102,10 @@ body {
   border: 1px solid red;
   font-size: 2em;
   text-align: center;
+}
+
+.strict:hover {
+  cursor: pointer;
 }
 
 .footer {
