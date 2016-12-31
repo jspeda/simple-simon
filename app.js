@@ -18,9 +18,10 @@ Game.start = function() {
   //   // console.log(this.previous);
   // };
   for (var i = 0; i < 25; i++) {
-    console.log(this.previous);
-    
     this.previous.push(this.colors[Math.floor(Math.random() * (4 - 0) + 0)]);
+    console.log(this.previous); // wrap this in setinterval to display...
+    // if user input is not equal to contents of the array ... somehow
+    // do not move on? 
     }
   // console.log($('.' + this.previous[1]).attr('class'));
   // if ($("." + this.previous[1]).data('clicked') === true) {
