@@ -17,12 +17,29 @@ Game.start = function() {
   //   this.previous.push(generator);
   //   // console.log(this.previous);
   // };
-  for (var i = 0; i < 25; i++) {
+  for (var i = 0; i < 25; i++) { // maybe i need to change this to a while loop
     this.previous.push(this.colors[Math.floor(Math.random() * (4 - 0) + 0)]);
     console.log(this.previous); // wrap this in setinterval to display...
     // if user input is not equal to contents of the array ... somehow
-    // do not move on? 
+    // do not move on?
+    var input = false;
+    while (input === false && this.userInput.length < this.previous) {
+      $('.green, .red, .blue, .yellow').click(function() {
+        this.userInput.push($(this).attr('class'));
+        var userArray = this.userInput.toString();
+        var simonArray = this.previous.toString();
+        if (userArray === simonArray) {
+          input = true;
+        }
+        else {
+          console.log(this.previous);
+
+        }
+      });
     }
+  }
+
+
   // console.log($('.' + this.previous[1]).attr('class'));
   // if ($("." + this.previous[1]).data('clicked') === true) {
   //   console.log('yes');
