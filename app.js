@@ -3,7 +3,7 @@ $(document).ready(function() {
 var Simon = {
   init: function() {
     this.colors = ["green", "red", "yellow", "blue"];
-    this.count = 0;
+    this.round = 0;
     this.previous = [];
     this.userInput = [];
   }
@@ -15,9 +15,11 @@ Game.start = function() {
   var i = 0;
   Game.newRound();
     var input = false;
-    if (input === false && this.userInput.length < this.previous) {
+    if (input === false && this.userInput.length < this.previous.length) {
       Game.getUserInput();
     }
+    // else if input is true and the arrays are equal -> next round and ++round
+    // else if round is 25, end the game. 
   }
 
   Game.newRound = function() {
@@ -29,11 +31,13 @@ Game.start = function() {
   };
 
   Game.getUserInput = function() {
+    var that = this; // fix this to make kyle simpson happy
     $('.green, .red, .yellow, .blue').click(function() {
       console.log('clicked');
-      this.userInput.push($(this).attr('class'));
-      $(this).addClass('.light');
-      console.log(this.userInput);
+      var selectedClass = $(this).attr('class');
+      that.userInput.push(selectedClass);
+      $(that).addClass('.light');
+      console.log(that.userInput);
     });
   }
 
