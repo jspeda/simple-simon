@@ -12,38 +12,29 @@ var Simon = {
 var Game = Object.create(Simon);
 
 Game.start = function() {
-  // while (this.previous.length < 25) {
-  //   var generator = this.colors[Math.floor(Math.random() * (4 - 0) + 0)];
-  //   this.previous.push(generator);
-  //   // console.log(this.previous);
-  // };
   var i = 0;
-    this.previous.push(this.colors[Math.floor(Math.random() * (4 - 0) + 0)]);
-    console.log(this.previous); // wrap this in setinterval to display...
-    // if user input is not equal to contents of the array ... somehow
-    // do not move on?
+  Game.newRound();
     var input = false;
-    console.log(this.userInput);
-    while (input === false && this.userInput.length < this.previous) {
-      $('.green, .red, .blue, .yellow').click(function() {
-        // this isn't logging for some reason.
-        console.log("clicked");
-        this.userInput.push($(this).attr('class'));
-        var userArray = this.userInput.toString();
-        var simonArray = this.previous.toString();
-        console.log(this.userInput);
-          if (userArray === simonArray) {
-            console.log("good job...")
-            input = true;
-            this.previous.push(this.colors[Math.floor(Math.random() * (4 - 0) + 0)]);
-            console.log(this.previous);
-            input = false;
-          }
-        else {
-          console.log(this.previous);
-        }
-      });
+    if (input === false && this.userInput.length < this.previous) {
+      Game.getUserInput();
     }
+  }
+
+  Game.newRound = function() {
+    this.previous.push(this.colors[Math.floor(Math.random() * (4 - 0) + 0)]);
+    console.log(this.previous);
+    var simonSays = setInterval(function() {
+      // flash game pieces on board.
+    }.bind(this), 1000);
+  };
+
+  Game.getUserInput = function() {
+    $('.green, .red, .yellow, .blue').click(function() {
+      console.log('clicked');
+      this.userInput.push($(this).attr('class'));
+      $(this).addClass('.light');
+      console.log(this.userInput);
+    });
   }
 
 
@@ -85,12 +76,12 @@ $('.strict').click(function() {
 });
 
 
-$('.green, .red, .yellow, .blue').mousedown(function() {
-  $(this).data('clicked', true);
-  console.log("clicked " + $(this).attr('class'));
-  // $(this).css('background', 'rgba(0,0,0,0.05)');
-  //background: rgba(0,0,0,0.1);
-});
+// $('.green, .red, .yellow, .blue').mousedown(function() {
+//   $(this).data('clicked', true);
+//   console.log("clicked " + $(this).attr('class'));
+//   // $(this).css('background', 'rgba(0,0,0,0.05)');
+//   //background: rgba(0,0,0,0.1);
+// });
 
 
 });

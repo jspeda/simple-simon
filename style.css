@@ -13,7 +13,7 @@ body {
 }
 
 .titlecard {
-  font-size: 2em;
+  font-size: 3em;
   padding: 2%;
 }
 
@@ -97,6 +97,10 @@ body {
 .blue {
   border-bottom-right-radius: 75%;
   background: #2868f5;
+}
+
+.light {
+  opacity: 1;
 }
 
 .strict {
