@@ -6,41 +6,73 @@ var Simon = {
     this.round = 0;
     this.previous = [];
     this.userInput = [];
+    this.strict = false;
   }
 };
 
 var Game = Object.create(Simon);
 
 Game.start = function() {
-  var i = 0;
   Game.newRound();
-    var input = false;
-    if (input === false && this.userInput.length < this.previous.length) {
+  this.round++;
+  if (this.round <= 25) {
+    if (this.userInput.length < this.previous.length) {
       Game.getUserInput();
     }
-    // else if input is true and the arrays are equal -> next round and ++round
-    // else if round is 25, end the game. 
+    else if (this.userInput.length === this.previous.length) {
+      console.log("length is the same");
+      var correct = Game.checkForEquals(this.userInput, this.previous);
+
+      if (correct === true) {
+        Game.newRound();
+        this.round++;
+      }
+
+      if (correct === false) {
+        // go back to previous round unless strict mode is on, in which case
+        // restart the entire game.
+      }
+    }
   }
-
-  Game.newRound = function() {
-    this.previous.push(this.colors[Math.floor(Math.random() * (4 - 0) + 0)]);
-    console.log(this.previous);
-    var simonSays = setInterval(function() {
-      // flash game pieces on board.
-    }.bind(this), 1000);
-  };
-
-  Game.getUserInput = function() {
-    var that = this; // fix this to make kyle simpson happy
-    $('.green, .red, .yellow, .blue').click(function() {
-      console.log('clicked');
-      var selectedClass = $(this).attr('class');
-      that.userInput.push(selectedClass);
-      $(that).addClass('.light');
-      console.log(that.userInput);
-    });
+  else {
+    console.log("restarting!");
+    Game.restart();
   }
+}
 
+Game.newRound = function() {
+  this.previous.push(this.colors[Math.floor(Math.random() * (4 - 0) + 0)]);
+  console.log(this.previous);
+  this.userInput = [];
+  var simonSays = setInterval(function() {
+    // flash game pieces on board.
+  }.bind(this), 1000);
+};
+
+Game.getUserInput = function() {
+  var that = this; // fix this to make kyle simpson happy
+  $('.green, .red, .yellow, .blue').click(function() {
+    console.log('clicked');
+    input = true;
+    var selectedClass = $(this).attr('class');
+    that.userInput.push(selectedClass);
+    $(that).addClass('.light');
+    console.log(that.userInput);
+    console.log("user input length is " + that.userInput.length + " and prev length is " + that.previous.length);
+
+  });
+}
+
+Game.checkForEquals = function(a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length != b.length) return false;
+
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
+}
 
   // console.log($('.' + this.previous[1]).attr('class'));
   // if ($("." + this.previous[1]).data('clicked') === true) {
