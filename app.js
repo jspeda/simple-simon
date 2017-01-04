@@ -15,29 +15,29 @@ var Game = Object.create(Simon);
 Game.start = function() {
   Game.newRound();
   this.round++;
-  if (this.round <= 25) {
-    if (this.userInput.length < this.previous.length) {
-      Game.getUserInput();
-    }
-    else if (this.userInput.length === this.previous.length) {
-      console.log("length is the same");
-      var correct = Game.checkForEquals(this.userInput, this.previous);
-
-      if (correct === true) {
-        Game.newRound();
-        this.round++;
-      }
-
-      if (correct === false) {
-        // go back to previous round unless strict mode is on, in which case
-        // restart the entire game.
-      }
-    }
-  }
-  else {
-    console.log("restarting!");
-    Game.restart();
-  }
+  // if (this.round <= 25) {
+  //   if (this.userInput.length < this.previous.length) {
+  //     Game.getUserInput();
+  //   }
+  //   else if (this.userInput.length === this.previous.length) {
+  //     console.log("length is the same");
+  //     var correct = Game.checkForEquals(this.userInput, this.previous);
+//
+  //     if (correct === true) {
+  //       Game.newRound();
+  //       this.round++;
+  //     }
+//
+  //     if (correct === false) {
+  //       // go back to previous round unless strict mode is on, in which case
+  //       // restart the entire game.
+  //     }
+  //   }
+  // }
+  // else {
+  //   console.log("restarting!");
+  //   Game.restart();
+  // }
 }
 
 Game.newRound = function() {
@@ -49,18 +49,8 @@ Game.newRound = function() {
   }.bind(this), 1000);
 };
 
-Game.getUserInput = function() {
-  var that = this; // fix this to make kyle simpson happy
-  $('.green, .red, .yellow, .blue').click(function() {
-    console.log('clicked');
-    input = true;
-    var selectedClass = $(this).attr('class');
-    that.userInput.push(selectedClass);
-    $(that).addClass('.light');
-    console.log(that.userInput);
-    console.log("user input length is " + that.userInput.length + " and prev length is " + that.previous.length);
-
-  });
+Game.getUserInput = function(color) {
+    this.userInput.push(color);
 }
 
 Game.checkForEquals = function(a, b) {
@@ -73,24 +63,6 @@ Game.checkForEquals = function(a, b) {
   }
   return true;
 }
-
-  // console.log($('.' + this.previous[1]).attr('class'));
-  // if ($("." + this.previous[1]).data('clicked') === true) {
-  //   console.log('yes');
-  // }
-  // var simonSays = setInterval(function() {
-  //   $('.green, .red, .blue, .yellow').css('background', '');
-  //   var selection = this.colors[Math.floor(Math.random() * (4 - 0) + 0)];
-  //   console.log(selection);
-  //   this.previous.push(selection);
-  //   $("." + this.colors[selection]).html('boop');
-  //   $('.count').html(this.count + 1);
-  //   this.count++;
-  //   if (this.count === 1) {
-  //     clearInterval(simonSays);
-  //     console.log(this.previous);
-  //   }
-  // }.bind(this), 1000);
 
 Game.strict = function() {
 
@@ -112,12 +84,35 @@ $('.strict').click(function() {
 });
 
 
-// $('.green, .red, .yellow, .blue').mousedown(function() {
-//   $(this).data('clicked', true);
-//   console.log("clicked " + $(this).attr('class'));
-//   // $(this).css('background', 'rgba(0,0,0,0.05)');
-//   //background: rgba(0,0,0,0.1);
-// });
+$('.green, .red, .yellow, .blue').mousedown(function() {
+  $(this).data('clicked', true);
+  var selection = $(this).attr('class');
+  console.log("clicked " + selection);
+  Game.getUserInput(selection);
+  if (Game.userInput.length === Game.previous.length) {
+    var correct = Game.checkForEquals(Game.userInput, Game.previous);
+    if (correct === true) {
+      Game.newRound();
+      Game.round++;
+      console.log("GOOD JOB");
+
+    }
+    else {
+      // clear userInput, repeat game array
+      // if strict mode is active, restart whole game
+      console.log("WRONG");
+      Game.userInput = [];
+      console.log(Game.previous);
+    }
+  }
+  if (Game.round > 3) {
+    console.log("YOU WIN");
+    Game.init();
+    Game.start();
+  }
+
+
+});
 
 
 });
