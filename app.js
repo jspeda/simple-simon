@@ -45,8 +45,11 @@ Game.newRound = function() {
   this.previous.push(this.colors[Math.floor(Math.random() * (4 - 0) + 0)]);
   console.log(this.previous);
   this.userInput = [];
+  $('.count').html("Round: " + (this.round + 1));
   var simonSays = setInterval(function() {
-    // flash game pieces on board.
+    for (var i = 0; i < this.userInput.length; i++) {
+
+    }
   }.bind(this), 1000);
 };
 
@@ -82,11 +85,14 @@ $('.start').click(function() {
   if (Game.started === true) {
     Game.restart();
   }
-  else Game.start();
+  else {
+    Game.start();
+  }
 
 });
 
 $('.strict').click(function() {
+  // don't allow clicking unless game has already started.
   Game.strictMode();
 });
 
@@ -107,9 +113,16 @@ $('.green, .red, .yellow, .blue').mousedown(function() {
     else {
       // clear userInput, repeat game array
       // if strict mode is active, restart whole game
-      console.log("WRONG");
-      Game.userInput = [];
-      console.log(Game.previous);
+      if (Game.strict === false) {
+        console.log("WRONG");
+        Game.userInput = [];
+        console.log(Game.previous);
+        console.log(Game.strict);
+      }
+      else {
+        console.log("you lose w strict mode");
+        Game.restart();
+      }
     }
   }
   if (Game.round > 3) {
