@@ -16,30 +16,7 @@ var Game = Object.create(Simon);
 Game.start = function() {
   Game.newRound();
   this.round++;
-  // if (this.round <= 25) {
-  //   if (this.userInput.length < this.previous.length) {
-  //     Game.getUserInput();
-  //   }
-  //   else if (this.userInput.length === this.previous.length) {
-  //     console.log("length is the same");
-  //     var correct = Game.checkForEquals(this.userInput, this.previous);
-//
-  //     if (correct === true) {
-  //       Game.newRound();
-  //       this.round++;
-  //     }
-//
-  //     if (correct === false) {
-  //       // go back to previous round unless strict mode is on, in which case
-  //       // restart the entire game.
-  //     }
-  //   }
-  // }
-  // else {
-  //   console.log("restarting!");
-  //   Game.restart();
-  // }
-}
+};
 
 Game.newRound = function() {
   this.previous.push(this.colors[Math.floor(Math.random() * (4 - 0) + 0)]);
@@ -47,15 +24,13 @@ Game.newRound = function() {
   this.userInput = [];
   $('.count').html("Round: " + (this.round + 1));
   var simonSays = setInterval(function() {
-    for (var i = 0; i < this.userInput.length; i++) {
-
-    }
+    // FLASH BUTTONS ON THE SCREEN
   }.bind(this), 1000);
 };
 
 Game.getUserInput = function(color) {
     this.userInput.push(color);
-}
+};
 
 Game.checkForEquals = function(a, b) {
   if (a === b) return true;
@@ -66,7 +41,7 @@ Game.checkForEquals = function(a, b) {
     if (a[i] !== b[i]) return false;
   }
   return true;
-}
+};
 
 Game.strictMode = function() {
   this.strict = !this.strict;
@@ -88,14 +63,12 @@ $('.start').click(function() {
   else {
     Game.start();
   }
-
 });
 
 $('.strict').click(function() {
   // don't allow clicking unless game has already started.
   Game.strictMode();
 });
-
 
 $('.green, .red, .yellow, .blue').mousedown(function() {
   $(this).data('clicked', true);
@@ -108,7 +81,6 @@ $('.green, .red, .yellow, .blue').mousedown(function() {
       Game.newRound();
       Game.round++;
       console.log("GOOD JOB");
-
     }
     else {
       // clear userInput, repeat game array
@@ -130,8 +102,6 @@ $('.green, .red, .yellow, .blue').mousedown(function() {
     Game.init();
     Game.start();
   }
-
-
 });
 
 
