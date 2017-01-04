@@ -80,7 +80,8 @@ $('.start').click(function() {
 });
 
 $('.strict').click(function() {
-  // strict = true/false maybe
+  Game.strict = !Game.strict;
+  console.log(Game.strict);
 });
 
 
