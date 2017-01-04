@@ -7,6 +7,7 @@ var Simon = {
     this.previous = [];
     this.userInput = [];
     this.strict = false;
+    this.started = false;
   }
 };
 
@@ -64,8 +65,9 @@ Game.checkForEquals = function(a, b) {
   return true;
 }
 
-Game.strict = function() {
-
+Game.strictMode = function() {
+  this.strict = !this.strict;
+  console.log(this.strict);
 };
 
 Game.restart = function() {
@@ -76,12 +78,16 @@ Game.restart = function() {
 Game.init();
 
 $('.start').click(function() {
-  Game.start();
+  Game.started = !Game.started;
+  if (Game.started === true) {
+    Game.restart();
+  }
+  else Game.start();
+
 });
 
 $('.strict').click(function() {
-  Game.strict = !Game.strict;
-  console.log(Game.strict);
+  Game.strictMode();
 });
 
 
