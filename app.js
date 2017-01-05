@@ -28,6 +28,10 @@ Game.newRound = function() {
   console.log(this.previous);
   this.userInput = [];
   $('.count').html("Round: " + (this.round + 1));
+  Game.displayPieces();
+};
+
+Game.displayPieces = function() {
   var i = 0;
   setTimeout(function() {
     (function lightUp() {
@@ -53,8 +57,8 @@ Game.newRound = function() {
         setTimeout(lightUp, 1000);
       }
     })();
-  }, 800)
-};
+  }, 800);
+}
 
 Game.getUserInput = function(color) {
     this.userInput.push(color);
@@ -114,6 +118,7 @@ $('#green, #red, #yellow, #blue').mousedown(function() {
       if (Game.strict === false) {
         console.log("WRONG");
         Game.userInput = [];
+        Game.displayPieces();
         console.log(Game.previous);
         console.log(Game.strict);
       }

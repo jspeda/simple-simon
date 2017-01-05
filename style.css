@@ -100,10 +100,6 @@ body {
   opacity: 1;
 }
 
-/*.light {
-  background: rgba(0,0,0,0);
-}*/
-
 @-webkit-keyframes light {
   0% {
     opacity: 0.2;
