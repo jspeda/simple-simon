@@ -23,9 +23,23 @@ Game.newRound = function() {
   console.log(this.previous);
   this.userInput = [];
   $('.count').html("Round: " + (this.round + 1));
-  var simonSays = setInterval(function() {
-    // FLASH BUTTONS ON THE SCREEN
-  }.bind(this), 1000);
+  var i = 0;
+  (function lightUp() {
+    console.log(i)
+    console.log($('.' + this.previous[i]));
+    if (++i < this.previous.length) {
+      setTimeout(lightUp, 1000).bind(this);
+    }
+  })();
+  // for (var i = 0; i < this.previous.length; i++) {
+  //   console.log($('.' + this.previous[i]));
+  //   var simonSays = setInterval(function() {
+  //     console.log($('.' + this.previous[i]));
+  //   }.bind(this), 1000);
+  // }
+  // var simonSays = setInterval(function() {
+  //   // light up buttons in sequence
+  // }.bind(this), 1000);
 };
 
 Game.getUserInput = function(color) {
