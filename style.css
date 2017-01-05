@@ -63,45 +63,73 @@ body {
   border: 2px solid white;
 }
 
-.green, .red, .yellow, .blue {
+#green, #red, #yellow, #blue {
   flex: 1;
   height: 100%;
   width: 25%;
 }
 
-.green:active, .red:active, .yellow:active, .blue:active {
+#green:active, #red:active, #yellow:active, #blue:active {
   background: rgba(0,0,0,0);
 }
 
-.green:hover, .red:hover, .yellow:hover, .blue:hover {
+#green:hover, #red:hover, #yellow:hover, #blue:hover {
   cursor: pointer;
 }
 
-.green {
+#green {
   border-top-left-radius: 75%;
   background: #16b812;
   border-right: 4px solid white;
 }
 
-.red {
+#red {
   border-top-right-radius: 75%;
   background: #f03413;
 }
 
-.yellow {
+#yellow {
   border-bottom-left-radius: 75%;
   background: #e2d30f;
   border-right: 4px solid white;
 }
 
-.blue {
+#blue {
   border-bottom-right-radius: 75%;
   background: #2868f5;
   opacity: 1;
 }
 
-#light {
-  background: rgba(0,0,0,0.1);
+/*.light {
+  background: rgba(0,0,0,0);
+}*/
+
+@-webkit-keyframes light {
+  0% {
+    opacity: 0.2;
+  }
+  22% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.light {
+  -webkit-animation-name: light;
+  -webkit-animation-duration: 200ms;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-timing-function: ease-in-out;
 }
 
 .strict {

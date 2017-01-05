@@ -24,26 +24,19 @@ Game.newRound = function() {
   this.userInput = [];
   $('.count').html("Round: " + (this.round + 1));
   var i = 0;
-  $(".green, .yellow, .red, .blue").removeAttr('id');
-  (function lightUp() {
-    console.log(i);
-    $("." + Game.previous[i]).attr('id', 'light').delay(100).queue(function() {
-      $(this).removeAttr('id');
-    });
-    console.log($('.' + Game.previous[i]));
-    if (++i < Game.previous.length) {
-      setTimeout(lightUp, 1000);
-    }
-  })();
-  // for (var i = 0; i < this.previous.length; i++) {
-  //   console.log($('.' + this.previous[i]));
-  //   var simonSays = setInterval(function() {
-  //     console.log($('.' + this.previous[i]));
-  //   }.bind(this), 1000);
-  // }
-  // var simonSays = setInterval(function() {
-  //   // light up buttons in sequence
-  // }.bind(this), 1000);
+  setTimeout(function() {
+    (function lightUp() {
+      console.log(i);
+      $("#" + Game.previous[i]).addClass('light');
+      setTimeout(function() {
+        $('#' + Game.previous[i]).removeClass('light');
+      }, 200);
+      console.log($('#' + Game.previous[i]));
+      if (++i < Game.previous.length) {
+        setTimeout(lightUp, 1000);
+      }
+    })();
+  }, 800)
 };
 
 Game.getUserInput = function(color) {
@@ -88,10 +81,10 @@ $('.strict').click(function() {
   Game.strictMode();
 });
 
-$('.green, .red, .yellow, .blue').mousedown(function() {
-  $(this).data('clicked', true);
-  var selection = $(this).attr('class');
+$('#green, #red, #yellow, #blue').mousedown(function() {
+  var selection = $(this).attr('id');
   console.log("clicked " + selection);
+  $(this).removeClass('light');
   Game.getUserInput(selection);
   if (Game.userInput.length === Game.previous.length) {
     var correct = Game.checkForEquals(Game.userInput, Game.previous);
@@ -101,8 +94,6 @@ $('.green, .red, .yellow, .blue').mousedown(function() {
       console.log("GOOD JOB");
     }
     else {
-      // clear userInput, repeat game array
-      // if strict mode is active, restart whole game
       if (Game.strict === false) {
         console.log("WRONG");
         Game.userInput = [];
