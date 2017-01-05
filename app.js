@@ -1,5 +1,10 @@
 $(document).ready(function() {
 
+var green = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3");
+var red = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3");
+var yellow = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3");
+var blue = new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3");
+
 var Simon = {
   init: function() {
     this.colors = ["green", "red", "yellow", "blue"];
@@ -28,6 +33,18 @@ Game.newRound = function() {
     (function lightUp() {
       console.log(i);
       $("#" + Game.previous[i]).addClass('light');
+      if (Game.previous[i] === 'green') {
+        green.play();
+      }
+      else if (Game.previous[i] === 'red') {
+        red.play();
+      }
+      else if (Game.previous[i] === 'yellow') {
+        yellow.play();
+      }
+      else if (Game.previous[i] === 'blue') {
+        blue.play();
+      }
       setTimeout(function() {
         $('#' + Game.previous[i]).removeClass('light');
       }, 200);
@@ -106,7 +123,7 @@ $('#green, #red, #yellow, #blue').mousedown(function() {
       }
     }
   }
-  if (Game.round > 3) {
+  if (Game.round > 10) {
     console.log("YOU WIN");
     Game.init();
     Game.start();
