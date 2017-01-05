@@ -97,10 +97,11 @@ body {
 .blue {
   border-bottom-right-radius: 75%;
   background: #2868f5;
+  opacity: 1;
 }
 
-.light {
-  opacity: 1;
+#light {
+  background: rgba(0,0,0,0);
 }
 
 .strict {

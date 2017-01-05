@@ -24,11 +24,13 @@ Game.newRound = function() {
   this.userInput = [];
   $('.count').html("Round: " + (this.round + 1));
   var i = 0;
+  $(".green, .yellow, .red, .blue").html("");
   (function lightUp() {
-    console.log(i)
-    console.log($('.' + this.previous[i]));
-    if (++i < this.previous.length) {
-      setTimeout(lightUp, 1000).bind(this);
+    console.log(i);
+    $("." + Game.previous[i]).html("light").delay(800);
+    console.log($('.' + Game.previous[i]));
+    if (++i < Game.previous.length) {
+      setTimeout(lightUp, 1000);
     }
   })();
   // for (var i = 0; i < this.previous.length; i++) {
