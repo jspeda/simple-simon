@@ -24,10 +24,12 @@ Game.newRound = function() {
   this.userInput = [];
   $('.count').html("Round: " + (this.round + 1));
   var i = 0;
-  $(".green, .yellow, .red, .blue").html("");
+  $(".green, .yellow, .red, .blue").removeAttr('id');
   (function lightUp() {
     console.log(i);
-    $("." + Game.previous[i]).html("light").delay(800);
+    $("." + Game.previous[i]).attr('id', 'light').delay(100).queue(function() {
+      $(this).removeAttr('id');
+    });
     console.log($('.' + Game.previous[i]));
     if (++i < Game.previous.length) {
       setTimeout(lightUp, 1000);
