@@ -25,7 +25,6 @@ Game.start = function() {
 
 Game.newRound = function() {
   this.previous.push(this.colors[Math.floor(Math.random() * (4 - 0) + 0)]);
-  console.log(this.previous);
   this.userInput = [];
   $('.count').html("Round: " + (this.round + 1));
   Game.displayPieces();
@@ -35,7 +34,6 @@ Game.displayPieces = function() {
   var i = 0;
   setTimeout(function() {
     (function lightUp() {
-      console.log(i);
       $("#" + Game.previous[i]).addClass('light');
       if (Game.previous[i] === 'green') {
         green.play();
@@ -52,7 +50,6 @@ Game.displayPieces = function() {
       setTimeout(function() {
         $('#' + Game.previous[i]).removeClass('light');
       }, 200);
-      console.log($('#' + Game.previous[i]));
       if (++i < Game.previous.length) {
         setTimeout(lightUp, 1000);
       }
@@ -77,7 +74,6 @@ Game.checkForEquals = function(a, b) {
 
 Game.strictMode = function() {
   this.strict = !this.strict;
-  console.log(this.strict);
 };
 
 Game.restart = function() {
@@ -105,7 +101,6 @@ $('.strict').click(function() {
 
 $('#green, #red, #yellow, #blue').mousedown(function() {
   var selection = $(this).attr('id');
-  console.log("clicked " + selection);
   $(this).removeClass('light');
   if ($(this).attr('id') === 'green') {
     green.play();
@@ -134,8 +129,6 @@ $('#green, #red, #yellow, #blue').mousedown(function() {
         $('.count').html("Try again!");
         Game.userInput = [];
         Game.displayPieces();
-        console.log(Game.previous);
-        console.log(Game.strict);
       }
       else {
         $('.count').html("Restarting");
