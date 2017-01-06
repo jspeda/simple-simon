@@ -98,8 +98,9 @@ $('.start').click(function() {
 });
 
 $('.strict').click(function() {
-  // don't allow clicking unless game has already started.
   Game.strictMode();
+  if (Game.strict === true) $('.strict').html("strict ON");
+  else $('.strict').html("strict OFF");
 });
 
 $('#green, #red, #yellow, #blue').mousedown(function() {
@@ -116,15 +117,18 @@ $('#green, #red, #yellow, #blue').mousedown(function() {
     }
     else {
       if (Game.strict === false) {
-        console.log("WRONG");
+        $('.count').html("Try again!");
         Game.userInput = [];
         Game.displayPieces();
         console.log(Game.previous);
         console.log(Game.strict);
       }
       else {
-        console.log("you lose w strict mode");
-        Game.restart();
+        $('.count').html("Restarting");
+        setTimeout(function() {
+          Game.restart();
+          Game.strict = true;
+        }, 2000)
       }
     }
   }
@@ -134,6 +138,4 @@ $('#green, #red, #yellow, #blue').mousedown(function() {
     Game.start();
   }
 });
-
-
 });
