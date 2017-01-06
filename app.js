@@ -107,7 +107,21 @@ $('#green, #red, #yellow, #blue').mousedown(function() {
   var selection = $(this).attr('id');
   console.log("clicked " + selection);
   $(this).removeClass('light');
+  if ($(this).attr('id') === 'green') {
+    green.play();
+  }
+  else if ($(this).attr('id') === 'red') {
+    red.play();
+  }
+  else if ($(this).attr('id') === 'yellow') {
+    yellow.play();
+  }
+  else if($(this).attr('id') === 'blue') {
+    blue.play();
+  }
+
   Game.getUserInput(selection);
+
   if (Game.userInput.length === Game.previous.length) {
     var correct = Game.checkForEquals(Game.userInput, Game.previous);
     if (correct === true) {
@@ -132,10 +146,12 @@ $('#green, #red, #yellow, #blue').mousedown(function() {
       }
     }
   }
-  if (Game.round > 10) {
-    console.log("YOU WIN");
+  if (Game.round > 20) {
+    $('.count').html("YOU WIN");
     Game.init();
-    Game.start();
+    setTimeout(function() {
+      Game.start();
+    }, 5000);
   }
 });
 });

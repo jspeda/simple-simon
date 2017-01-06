@@ -14,7 +14,7 @@ body {
 
 .titlecard {
   font-size: 3em;
-  padding: 2%;
+  padding: 1.5%;
 }
 
 .game-area {
@@ -142,6 +142,13 @@ body {
 }
 
 .footer {
+  margin-top: 2%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.github {
+  margin-top: 10px;
 }
